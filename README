@@ -1,0 +1,30 @@
+Do you need to build Firefox, but don't have time to muddle through build dependencies and wiki pages?
+Try FoxInABox, a VM that comes with a full, standard Firefox build environment out of the box.
+
+Usage:
+$ sudo gem install vagrant
+$ vagrant up
+
+At this point, there should be a new foxinabox VirtualBox machine in ~/VirtualBox VMs which you can run.
+
+
+Known issues:
+
+*** On OSX, running |vagrant up| can result in the following output:
+
+> [default] Extracting box...
+> [default] Cleaning up downloaded box...
+> /Library/Ruby/Gems/1.8/gems/archive-tar-minitar-0.5.2/lib/archive/tar/minitar.rb:493:in `read': undefined method `size' for nil:NilClass (NoMethodError)
+>	from /Library/Ruby/Gems/1.8/gems/archive-tar-minitar-0.5.2/lib/archive/tar/minitar.rb:740:in `extract_entry'
+>	from /Library/Ruby/Gems/1.8/gems/archive-tar-minitar-0.5.2/lib/archive/tar/minitar.rb:739:in `loop'
+>	from /Library/Ruby/Gems/1.8/gems/archive-tar-minitar-0.5.2/lib/archive/tar/minitar.rb:739:in `extract_entry'
+> ...
+
+This can be fixed by re-running |vagrant up| until the operation succeeds.
+
+
+*** Starting up the VM for the first time is really slow
+
+First the OS image needs to be downloaded (~350 MB), then mozilla-central needs to be cloned (~700 MB), and a bunch of packages need to be installed.
+This takes time, and puppet is really bad at providing output while long-running tasks are in operation. Just ignore the process and check back in
+every 15 minutes.
