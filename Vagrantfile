@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
     config.vm.box = "mozdev"
-    config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+    config.vm.box_url = "ubuntu-1104-server-i386 http://dl.dropbox.com/u/7490647/talifun-ubuntu-11.04-server-i386.box"
 
     # Increase vagrant's patience during hang-y CentOS bootup
     # see: https://github.com/jedi4ever/veewee/issues/14
