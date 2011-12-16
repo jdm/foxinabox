@@ -1,6 +1,8 @@
 Vagrant::Config.run do |config|
     config.vm.box = "foxinabox"
-    config.vm.box_url = "http://dl.dropbox.com/u/7490647/talifun-ubuntu-11.04-server-i386.box"
+    config.vm.box_url = "https://github.com/downloads/divio/vagrant-boxes/vagrant-ubuntu-11.04-server-amd64-v1.box"
+
+    #config.vm.boot_mode   = :gui
 
     # Increase vagrant's patience during hang-y CentOS bootup
     # see: https://github.com/jedi4ever/veewee/issues/14
