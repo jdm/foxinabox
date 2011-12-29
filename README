@@ -5,15 +5,17 @@ Usage:
 
 Step 1: Install VirtualBox (https://www.virtualbox.org/)
 
-Step 2: Set up the foxinabox VM
+Step 2: Install Vagrant and set up the foxinabox VM
+  - note: if using Windows, see http://vagrantup.com/docs/getting-started/setup/windows.html for a more detailed setup process
 $ sudo gem install vagrant
 $ vagrant up
 ... (long wait)
 
+Step 3: Final VirtualBox setup
 Follow the instructions at http://mylinuxramblings.wordpress.com/2010/06/03/installing-virtualbox-guest-additions-on-ubuntu-server-10-04/ to install the
 VirtualBox Guest Additions.
 
-Step 3: Use your use VM
+Step 4: Use your use VM
 $ vagrant ssh
 $ cd mozilla-central
 $ make -f client.mk build
@@ -28,7 +30,7 @@ $ startfluxbox &
 $ cd mozilla-central
 $ obj-x86-64-unknown-linux-gnu/dist/bin/firefox
 
-Poof! You're testing your new build of Firefox. From now on, you can just repeat step 3, after making changes to mozilla-central (either through hg bisect
+Poof! You're testing your new build of Firefox. From now on, you can just repeat step 4, after making changes to mozilla-central (either through hg bisect
 or pulling from tip, or anything else!).
 
 
