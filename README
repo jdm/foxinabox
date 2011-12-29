@@ -2,10 +2,34 @@ Do you need to build Firefox, but don't have time to muddle through build depend
 Try FoxInABox, a VM that comes with a full, standard Firefox build environment out of the box.
 
 Usage:
+
+Step 1: Install VirtualBox (https://www.virtualbox.org/)
+
+Step 2: Set up the foxinabox VM
 $ sudo gem install vagrant
 $ vagrant up
+... (long wait)
 
-At this point, there should be a new foxinabox VirtualBox machine in ~/VirtualBox VMs which you can run.
+Follow the instructions at http://mylinuxramblings.wordpress.com/2010/06/03/installing-virtualbox-guest-additions-on-ubuntu-server-10-04/ to install the
+VirtualBox Guest Additions.
+
+Step 3: Use your use VM
+$ vagrant ssh
+$ cd mozilla-central
+$ make -f client.mk build
+... (watch Firefox build, long wait)
+$ sudo shutdown -h 0
+
+At this point, there should be a new foxinabox VirtualBox machine in ~/VirtualBox VMs which you can run. To test Firefox, you'll need the graphical display
+of VirtualBox, so power up the machine, and log in with the account "vagrant", password "vagrant".
+
+$ xinit
+$ startfluxbox &
+$ cd mozilla-central
+$ obj-x86-64-unknown-linux-gnu/dist/bin/firefox
+
+Poof! You're testing your new build of Firefox. From now on, you can just repeat step 3, after making changes to mozilla-central (either through hg bisect
+or pulling from tip, or anything else!).
 
 
 Known issues:
