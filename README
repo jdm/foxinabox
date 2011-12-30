@@ -11,26 +11,26 @@ $ sudo gem install vagrant
 $ vagrant up
 ... (long wait)
 
-Step 3: Final VirtualBox setup
+Step 2.5: Final VirtualBox setup (optional, for better graphical and interactive performance)
 Follow the instructions at http://mylinuxramblings.wordpress.com/2010/06/03/installing-virtualbox-guest-additions-on-ubuntu-server-10-04/ to install the
 VirtualBox Guest Additions.
 
-Step 4: Use your use VM
+Step 3: Use your use VM
 $ vagrant ssh
 $ cd mozilla-central
 $ make -f client.mk build
 ... (watch Firefox build, long wait)
-$ sudo shutdown -h 0
+$ exit
+$ vagrant halt
 
-At this point, there should be a new foxinabox VirtualBox machine in ~/VirtualBox VMs which you can run. To test Firefox, you'll need the graphical display
+At this point, there should be a new foxinabox VirtualBox machine  which you can run. To test Firefox, you'll need the graphical display
 of VirtualBox, so power up the machine, and log in with the account "vagrant", password "vagrant".
 
-$ xinit
-$ startfluxbox &
+$ startx
 $ cd mozilla-central
 $ obj-x86-64-unknown-linux-gnu/dist/bin/firefox
 
-Poof! You're testing your new build of Firefox. From now on, you can just repeat step 4, after making changes to mozilla-central (either through hg bisect
+Poof! You're testing your new build of Firefox. From now on, you can just repeat step 3, after making changes to mozilla-central (either through hg bisect
 or pulling from tip, or anything else!).
 
 
@@ -48,6 +48,9 @@ Known issues:
 
 This can be fixed by re-running |vagrant up| until the operation succeeds.
 
+*** The first |vagrant up| command fails while booting up for the first time
+
+Subsequent |vagrant up| invocations will not work. Instead, use |vagrant provision| to finish setting up the build dependencies.
 
 *** Starting up the VM for the first time is really slow
 
